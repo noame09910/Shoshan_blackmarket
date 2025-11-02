@@ -1,8 +1,8 @@
 fx_version 'bodacious'
 game 'gta5'
 
-name 'gi-grangeillegal'
-description 'Gamers-Israel BlackMarket'
+name 'Black Market'
+description 'Shoshan Black Market'
 
 lua54 'yes'
 
@@ -29,4 +29,5 @@ files{
     'html/script.js',
     'html/style.css',
     'html/images/*.png',
+
 }
