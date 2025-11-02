@@ -25,7 +25,7 @@ end
 
 local handler
 
-RegisterNetEvent('gi-grangeillegal:BountyStart',function()
+RegisterNetEvent('shoshanblackmarket:BountyStart',function()
     if(GetInvokingResource()) then return end
 
     if(bountyhunting ~= 0) then
@@ -135,7 +135,7 @@ RegisterNetEvent('gi-grangeillegal:BountyStart',function()
         Citizen.Wait(50)
     end
     local weapon = Config.PedWeapons[math.random(1,#Config.PedWeapons)]
-    local netid = lib.callback.await("gi-grangeillegal:server:CreateBounty",false,randommodel,weapon,randomIndex)
+    local netid = lib.callback.await("shoshanblackmarket:server:CreateBounty",false,randommodel,weapon,randomIndex)
     BountyTarget = ESX.Game.VerifyEnt(netid,true)
     SetModelAsNoLongerNeeded(pedModel)
     if(not DoesEntityExist(BountyTarget)) then
@@ -375,7 +375,7 @@ function CreateEventHandler(state)
                                                             bountyhunting = 0
                                                             ClearPedTasks(BountyTarget)
                                                             BountyTarget = nil
-                                                            Citizen.InvokeNative(0x7FDD1128, "gi-grangeillegal:SV_BountySetPrize")
+                                                            Citizen.InvokeNative(0x7FDD1128, "shoshanblackmarket:SV_BountySetPrize")
                                                         else
                                                             Citizen.CreateThreadNow(function()
                                                                 PlaySoundFrontend(-1,"MP_Flash","WastedSounds",0)
@@ -451,7 +451,7 @@ function BountyMenu()
         elseif data.current.value == "Claim" then
             if((GetTimeDifference(GetGameTimer(), lastclaim) > 120000)) then
                 lastclaim = GetGameTimer()
-                Citizen.InvokeNative(0x7FDD1128, "gi-grangeillegal:SV_ClaimPrize")
+                Citizen.InvokeNative(0x7FDD1128, "shoshanblackmarket:SV_ClaimPrize")
             else
                 ESX.ShowNotification("אפשר לבקש פרס כל 2 דקות")
             end
@@ -480,7 +480,7 @@ print("Bounty Accept 2")
         --menu.close()
         ESX.UI.Menu.CloseAll()
         if data.current.value == "yes" then
-            Citizen.InvokeNative(0x7FDD1128, "gi-grangeillegal:SV_BountyStart")
+            Citizen.InvokeNative(0x7FDD1128, "shoshanblackmarket:SV_BountyStart")
         elseif data.current.value == "no" then
             ESX.ShowNotification("פחדן אפס")
         end
@@ -611,4 +611,5 @@ end)
 
 RegisterCommand("stopcutscene", function(source, args)
     StopCutsceneImmediately()
+
 end)
