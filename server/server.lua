@@ -19,7 +19,7 @@ local function GetWeaponById(id)
 
 end
 
-ESX.RegisterServerCallback('gi-grangeillegal:buyWeapon', function(source, cb, weaponID)
+ESX.RegisterServerCallback('shoshanblackmarket:buyWeapon', function(source, cb, weaponID)
     local src = source
 	local xPlayer = ESX.GetPlayerFromId(source)
 	if(xPlayer) then
@@ -80,7 +80,7 @@ ESX.RegisterServerCallback('gi-grangeillegal:buyWeapon', function(source, cb, we
 	end
 end)
 
-ESX.RegisterServerCallback('gi-grangeillegal:getVehicleInfos', function(source, cb, plate)
+ESX.RegisterServerCallback('shoshanblackmarket:getVehicleInfos', function(source, cb, plate)
 
 	local xPlayer = ESX.GetPlayerFromId(source)
 
@@ -121,7 +121,7 @@ ESX.RegisterServerCallback('gi-grangeillegal:getVehicleInfos', function(source, 
 end)
 
 
-RegisterNetEvent("gi-grangeillegal:Repair",function()
+RegisterNetEvent("shoshanblackmarket:Repair",function()
 	local src = source
 	local xPlayer = ESX.GetPlayerFromId(src)
 	if(not xPlayer) then
@@ -168,7 +168,7 @@ RegisterNetEvent("gi-grangeillegal:Repair",function()
 	end
 end)
 
-RegisterNetEvent('gi-grangeillegal:copcount',function()
+RegisterNetEvent('shoshanblackmarket:copcount',function()
 
 	local src = source
 	local xPlayer = ESX.GetPlayerFromId(src)
@@ -202,8 +202,8 @@ end)
 
 local PreventLicenses = {}
 
-RegisterNetEvent('gi-grangeillegal:DrugDealer')
-AddEventHandler('gi-grangeillegal:DrugDealer',function()
+RegisterNetEvent('shoshanblackmarket:DrugDealer')
+AddEventHandler('shoshanblackmarket:DrugDealer',function()
 	local src = source
 	local xPlayer = ESX.GetPlayerFromId(src)
 	if(not xPlayer) then
@@ -246,8 +246,8 @@ end
 
 local PrepareBounty = {}
 
-RegisterNetEvent('gi-grangeillegal:SV_BountyStart')
-AddEventHandler('gi-grangeillegal:SV_BountyStart',function()
+RegisterNetEvent('shoshanblackmarket:SV_BountyStart')
+AddEventHandler('shoshanblackmarket:SV_BountyStart',function()
 	local src = source
 	local xPlayer = ESX.GetPlayerFromId(src)
 
@@ -288,7 +288,7 @@ AddEventHandler('gi-grangeillegal:SV_BountyStart',function()
 			xPlayer.showRGBNotification("error",'כבר ביצעת משימה ב 48 שעות האחרונות')
 		else
 			PrepareBounty[src] = true
-			TriggerClientEvent('gi-grangeillegal:BountyStart',src)
+			TriggerClientEvent('shoshanblackmarket:BountyStart',src)
 		end
 	end)
 end)
@@ -307,7 +307,7 @@ local function IsWeaponInConfig(weapon)
 	return false
 end
 
-lib.callback.register('gi-grangeillegal:server:CreateBounty', function(source, model, weapon, coordindex)
+lib.callback.register('shoshanblackmarket:server:CreateBounty', function(source, model, weapon, coordindex)
     local xPlayer = ESX.GetPlayerFromId(source)
     if not xPlayer then return false end
 	if not PrepareBounty[xPlayer.source] then return false end
@@ -427,8 +427,8 @@ function BountyAlert(coords)
     TriggerEvent('rcore_dispatch:server:sendAlert', data)
 end
 
-RegisterNetEvent('gi-grangeillegal:SV_BountySetPrize')
-AddEventHandler('gi-grangeillegal:SV_BountySetPrize',function()
+RegisterNetEvent('shoshanblackmarket:SV_BountySetPrize')
+AddEventHandler('shoshanblackmarket:SV_BountySetPrize',function()
 	local src = source
 	local xPlayer = ESX.GetPlayerFromId(src)
 
@@ -490,8 +490,8 @@ AddEventHandler('gi-grangeillegal:SV_BountySetPrize',function()
 end)
 
 
-RegisterNetEvent('gi-grangeillegal:SV_ClaimPrize')
-AddEventHandler('gi-grangeillegal:SV_ClaimPrize',function()
+RegisterNetEvent('shoshanblackmarket:SV_ClaimPrize')
+AddEventHandler('shoshanblackmarket:SV_ClaimPrize',function()
 	local src = source
 
 	Wait(math.random(500,1200))
@@ -544,7 +544,7 @@ AddEventHandler('gi-grangeillegal:SV_ClaimPrize',function()
 
 end)
 
-RegisterNetEvent("gi-grangeillegal:server:RequestRampage",function()
+RegisterNetEvent("shoshanblackmarket:server:RequestRampage",function()
 	local xPlayer = ESX.GetPlayerFromId(source)
 	if not xPlayer then return end
 	local weapon = exports.ox_inventory:GetCurrentWeapon(xPlayer.source)
@@ -580,7 +580,7 @@ print(".הנשק הזה לא מתאים לפעולה הזו")
 		}
 
 		SetPlayerRoutingBucket(xPlayer.source,xPlayer.source+911)
-		xPlayer.triggerEvent("gi-grangeillegal:client:StartRampage")
+		xPlayer.triggerEvent("shoshanblackmarket:client:StartRampage")
 	else
 		xPlayer.showRGBNotification("error","אתה צריך ₪"..Config.RampageCost.." .בבנק כדי להתחיל את הדבר הזה")
 	end
@@ -600,7 +600,7 @@ CreateThread(function()
 	LoadLeaderBoard()
 end)
 
-ESX.RegisterServerCallback('gi-grangeillegal:rampagetop10', function(source, cb)
+ESX.RegisterServerCallback('shoshanblackmarket:rampagetop10', function(source, cb)
 	cb(LeaderBoard)
 end)
 
@@ -663,7 +663,7 @@ local function FixWeaponBySerial(src,weapon,serial,durability)
 end
 
 
-RegisterNetEvent("gi-grangeillegal:server:EndRampage",function(score)
+RegisterNetEvent("shoshanblackmarket:server:EndRampage",function(score)
 	local src = source
 	if(not PlayersInRampage[src]) then return end
 	local xPlayer = ESX.GetPlayerFromId(src)
@@ -681,7 +681,7 @@ RegisterNetEvent("gi-grangeillegal:server:EndRampage",function(score)
 	end
 end)
 
-RegisterNetEvent("gi-grangeillegal:server:RequestBagDeposit", function()
+RegisterNetEvent("shoshanblackmarket:server:RequestBagDeposit", function()
 	local src = source
 	local xPlayer = ESX.GetPlayerFromId(src)
 	if not xPlayer then return end
@@ -761,3 +761,4 @@ CreateThread(function()
 	end
 	TriggerEvent('cron:runAt', hour, 0, CronTask)
 end)
+
