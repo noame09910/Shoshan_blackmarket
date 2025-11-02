@@ -498,7 +498,7 @@ function BlackMarketMainMenu()
 
             if(IsPedArmed(PlayerPedId(),4)) then
 
-                TriggerServerEvent("gi-grangeillegal:Repair")
+                TriggerServerEvent("shoshanblackmarket:Repair")
 
                 StopCurrentPlayingAmbientSpeech(npcs[1])
 
@@ -514,7 +514,7 @@ function BlackMarketMainMenu()
 
             if(not lastscout or (GetTimeDifference(GetGameTimer(), lastscout) > 600000)) then
 
-                TriggerServerEvent('gi-grangeillegal:copcount')
+                TriggerServerEvent('shoshanblackmarket:copcount')
 
                 StopCurrentPlayingAmbientSpeech(npcs[1])
 
@@ -574,7 +574,7 @@ function BlackMarketMainMenu()
 
                     menu2.close()
 
-                    ESX.TriggerServerCallback('gi-grangeillegal:getVehicleInfos', function(retrivedInfo)
+                    ESX.TriggerServerCallback('shoshanblackmarket:getVehicleInfos', function(retrivedInfo)
 
 
 
@@ -680,7 +680,7 @@ function JobQuestion()
 
                 --TriggerServerEvent('jobsystem:Job',"drugdelivery")
 
-                Citizen.InvokeNative(0x7FDD1128, "gi-grangeillegal:DrugDealer")
+                Citizen.InvokeNative(0x7FDD1128, "shoshanblackmarket:DrugDealer")
 
             elseif data.current.value == 'decline' then
 
@@ -788,7 +788,7 @@ function AddShopsIllegalMenu()
 
         if(not lastpurchase or (GetTimeDifference(GetGameTimer(), lastpurchase) > 5000)) then
 
-            ESX.TriggerServerCallback('gi-grangeillegal:buyWeapon', function(bought, forceclose)
+            ESX.TriggerServerCallback('shoshanblackmarket:buyWeapon', function(bought, forceclose)
 
                 lastpurchase = GetGameTimer()
 
@@ -976,7 +976,7 @@ local RampageRequested = false
 
 local function Leaderboard()
 
-    ESX.TriggerServerCallback("gi-grangeillegal:rampagetop10",function(leader)
+    ESX.TriggerServerCallback("shoshanblackmarket:rampagetop10",function(leader)
 
         local elements = {}
 
@@ -1116,7 +1116,7 @@ function RampageMenu()
 
                         
 
-                        TriggerServerEvent("gi-grangeillegal:server:RequestRampage")
+                        TriggerServerEvent("shoshanblackmarket:server:RequestRampage")
 
                     end
 
@@ -1154,7 +1154,7 @@ end
 
 
 
-RegisterNetEvent("gi-grangeillegal:client:StartRampage",function()
+RegisterNetEvent("shoshanblackmarket:client:StartRampage",function()
 print("Starting Rampage")
     if(GetInvokingResource()) then return end
 print("Passed invoking resource")
@@ -2890,7 +2890,7 @@ print("Passed already in rampage")
 
     SetPedInfiniteAmmoClip(PlayerPedId(),false)
 
-    TriggerServerEvent("gi-grangeillegal:server:EndRampage",RampScore)
+    TriggerServerEvent("shoshanblackmarket:server:EndRampage",RampScore)
 
     PlaySoundFrontend(-1, "RAMPAGE_PASSED_MASTER", 0, true)
 
@@ -3113,7 +3113,7 @@ RegisterNUICallback('action', function(data,cb)
 
         if(IsPedArmed(PlayerPedId(),4)) then
 
-            TriggerServerEvent("gi-grangeillegal:Repair")
+            TriggerServerEvent("shoshanblackmarket:Repair")
 
             StopCurrentPlayingAmbientSpeech(npcs[1])
 
@@ -3131,7 +3131,7 @@ RegisterNUICallback('action', function(data,cb)
 
         if(not lastscout or (GetTimeDifference(GetGameTimer(), lastscout) > 600000)) then
 
-            TriggerServerEvent('gi-grangeillegal:copcount')
+            TriggerServerEvent('shoshanblackmarket:copcount')
 
             StopCurrentPlayingAmbientSpeech(npcs[1])
 
@@ -3195,7 +3195,7 @@ RegisterNUICallback('action', function(data,cb)
 
                 menu2.close()
 
-                ESX.TriggerServerCallback('gi-grangeillegal:getVehicleInfos', function(retrivedInfo)
+                ESX.TriggerServerCallback('shoshanblackmarket:getVehicleInfos', function(retrivedInfo)
 
 
 
@@ -3313,7 +3313,7 @@ function MoneyDeposit()
 
     if(alert == "confirm") then
 
-        TriggerServerEvent("gi-grangeillegal:server:RequestBagDeposit")
+        TriggerServerEvent("shoshanblackmarket:server:RequestBagDeposit")
 
     end
 
@@ -3328,5 +3328,6 @@ exports("MoneyDeposit", MoneyDeposit)
 exports.ox_inventory:displayMetadata({
 
     p_worth = 'שווי תיק',
+
 
 })
