@@ -2,7 +2,7 @@
 
 ### **Project Overview**
 
-**NeonBalckMarket** is a sophisticated UI framework designed for a game economy system, specifically created for the Israeli gaming community by Gamers-Israel. This is a **black market interface** that serves as an interactive menu system for in-game illegal activities and commerce.
+**NeonBalckMarket** is a sophisticated UI framework designed for a game economy system, specifically created for the Israeli gaming community by shoshans (discord id:719885229099319356). This is a **black market interface** that serves as an interactive menu system for in-game illegal activities and commerce.
 
 ### **Core Purpose**
 
